@@ -9,16 +9,9 @@
   </div>
 </template>
 
-<script>
+<script setup>
 import Search from './Search.vue'
 import '../assets/main.css'
-
-export default {
-  name: 'Header',
-  components: {
-    Search,
-  },
-}
 </script>
 
 <style lang="scss">
