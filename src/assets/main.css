@@ -1,7 +1,39 @@
 @import 'reset.css';
-@import 'base.css';
-
+body {
+  min-height: 100vh;
+  color: var(--color-text);
+  background: var(--color-background);
+  transition:
+    color 0.5s,
+    background-color 0.5s;
+  line-height: 1.6;
+  font-family: Inter, sans-serif;
+  font-size: 15px;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+h1,
+h2 {
+  color: rgba(15, 23, 42, 1);
+}
+h1 {
+  font-size: 36px;
+  font-weight: 600;
+}
+h2 {
+  font-size: 24px;
+  font-weight: 400;
+}
+p {
+  font-size: 16px;
+  color: rgba(112, 119, 134, 1);
+}
 .addBook {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
   background-color: rgba(28, 125, 65, 1);
   width: auto;
   height: 40px;
@@ -18,4 +50,26 @@
   height: auto;
   display: flex;
   justify-content: center;
+}
+.icon {
+  width: 24px;
+  height: 24px;
+}
+
+@media (max-width: 768px) {
+  h1 {
+    font-size: 20px;
+  }
+  h2 {
+    font-size: 16px;
+  }
+  p {
+    font-size: 12px;
+  }
+}
+@media (max-width: 480px) {
+  .icon {
+    width: 20px;
+    height: 20px;
+  }
 }
