@@ -3,45 +3,22 @@
     <div class="icon">
       <img src="../../public/search.png" alt="#" class="searchIcon" />
     </div>
-    <input type="text" placeholder="Найти ту самую книгу" />
+    <input type="text" placeholder="Найти ту самую книгу" v-model="query" @input="search" />
   </div>
 </template>
 
-<script>
+<script setup lang="ts">
 import { ref } from 'vue'
 import { useStore } from 'vuex'
 
-export default {
-  name: 'Search',
-  setup() {
-    const store = useStore()
-    const query = ref('')
-    const showInput = ref(false)
+const store = useStore()
+const query = ref('')
 
-    const addSearch = async () => {
-      if (query.value !== '') {
-        await store.dispatch('addSearch', {
-          query: query.value,
-          status: true,
-        })
-        return (query.value = '')
-      }
-      return await store.dispatch('addSearch', {
-        query: '',
-        status: false,
-      })
-    }
-
-    const toggleShowInput = () =>
-      showInput.value === false ? (showInput.value = true) : (showInput.value = false)
-
-    return {
-      showInput,
-      query,
-      addSearch,
-      toggleShowInput,
-    }
-  },
+const search = async () => {
+  await store.dispatch('addSearch', {
+    query: query.value,
+    status: true,
+  })
 }
 </script>
 
@@ -55,8 +32,6 @@ export default {
     position: absolute;
     left: 1%;
     top: 20%;
-    width: 10%;
-    height: 100%;
   }
   input {
     width: 90%;
