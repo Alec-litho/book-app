@@ -1,4 +1,6 @@
-@import 'reset.css';
+@import './reset.css';
+@import './variables.scss';
+
 body {
   min-height: 100vh;
   color: var(--color-text);
@@ -34,12 +36,16 @@ p {
   align-items: center;
   justify-content: center;
   gap: 5px;
-  background-color: rgba(28, 125, 65, 1);
+  background-color: $success-color;
   width: auto;
   height: 40px;
   border-radius: 8px;
   padding: 0 14px;
   color: white;
+}
+.addBook:hover {
+  transition: 0.2s;
+  background-color: $success-color-hover;
 }
 .addBook .icon {
   width: 20px;

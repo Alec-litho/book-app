@@ -13,7 +13,7 @@
           </p>
         </div>
         <div class="rightSide">
-          <img src="../../public/close.png" alt="" class="cursor" @click="emit('closeModal')" />
+          <img src="../../public/close.png" alt="" class="close" @click="emit('closeModal')" />
         </div>
       </div>
       <div class="bodyModal">
@@ -67,28 +67,30 @@
         </div>
       </div>
       <div class="acceptField">
-        <input type="radio" />
+        <input type="radio" class="acceptInput" />
         <p>
           Я согласен с условиями <span><a href="#">Политики конфиденциальности</a></span>
         </p>
       </div>
       <div class="finish">
         <button class="addBook" @click="handleClick">
-          <img :src="'../../public/' + props.type + '.png'" alt="" />
+          <AddSvg class="addIcon" />
           <p>{{ props.type === 'edit' ? 'Сохранить' : 'Добавить' }}</p>
         </button>
-        <button v-if="props.type === 'edit'">
-          <img src="../../public/remove.png" alt="" @click="deleteBook" />
+        <button v-if="props.type === 'edit'" class="removeBtn">
+          <DeleteSvg @click="deleteBook" />
         </button>
       </div>
     </div>
   </div>
 </template>
 <script setup lang="ts">
-import '../assets/main.css'
+import '../assets/main.scss'
 import { useStore } from 'vuex'
 import { PropType, reactive, useTemplateRef } from 'vue'
 import { IBook } from '@/types'
+import DeleteSvg from '@/assets/svgs/DeleteSvg.vue'
+import AddSvg from '@/assets/svgs/AddSvg.vue'
 
 const props = defineProps({
   type: String,
@@ -131,6 +133,7 @@ const deleteBook = () => {
 }
 </script>
 <style lang="scss">
+@import '../assets/variables.scss';
 .bg {
   z-index: 100;
   position: absolute;
@@ -161,15 +164,16 @@ const deleteBook = () => {
       .leftSide {
         h1 {
           font-size: 20px;
-          color: rgba(15, 23, 42, 1);
         }
         p {
           font-size: 14px;
-          color: rgba(112, 119, 134, 1);
         }
       }
       .rightSide {
         cursor: pointer;
+        .close {
+          color: $default-color;
+        }
       }
     }
     .bodyModal {
@@ -183,10 +187,14 @@ const deleteBook = () => {
         }
         input {
           height: 41px;
-          background-color: rgba(245, 246, 246, 1);
+          background-color: $input-color;
           border-radius: 8px;
           padding-left: 20px;
           margin-top: 10px;
+          border: 1px solid $input-color;
+        }
+        input:focus {
+          border: 1px solid $success-color;
         }
         p {
           display: none;
@@ -194,12 +202,12 @@ const deleteBook = () => {
       }
       .field.err {
         input {
-          border: 1px solid red;
+          border: 1px solid $error-color;
           background-color: rgba(255, 0, 0, 0.162);
         }
         p {
           display: block;
-          color: red;
+          color: $error-color;
           font-size: 14px;
         }
       }
@@ -207,20 +215,49 @@ const deleteBook = () => {
     .acceptField {
       display: flex;
       align-items: center;
-      p {
-        margin-left: 15px;
-      }
       p,
       a {
         font-size: 10px;
         color: rgba(112, 119, 134, 1);
       }
+      p {
+        margin-left: 15px;
+      }
+      a {
+        text-decoration: underline;
+      }
+      input[type='radio'] {
+        cursor: pointer;
+        appearance: none;
+        color: $default-color;
+        width: 16px;
+        height: 16px;
+        border: 0.15em solid $default-color;
+        border-radius: 15%;
+      }
+      input[type='radio']:checked {
+        border-color: $success-color;
+        background-color: $success-color;
+        color: #fff;
+        border-color: transparent;
+        background: #fff
+          url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1 1"><polyline points="0.15,0.5 0.4,0.75 0.85,0.25" style="fill:none;stroke:%2314bf8b;stroke-linecap:round;stroke-width:0.15;"/></svg>')
+          no-repeat 50% / 1rem;
+      }
     }
     .finish {
       display: flex;
       justify-content: flex-end;
+      align-items: center;
+      gap: 10px;
       p {
         color: white;
+      }
+      .removeBtn {
+        background-color: rgba(245, 246, 246, 1);
+        width: 41px;
+        height: 41px;
+        border-radius: 8px;
       }
     }
   }

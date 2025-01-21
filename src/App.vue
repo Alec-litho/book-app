@@ -6,10 +6,7 @@
         <h1>
           Книги в каталоге <span>{{ bookNum }}</span>
         </h1>
-        <button class="addBook" @click="() => openModal()">
-          <img src="../../public/add.png" alt="" />
-          Добавить книгу
-        </button>
+        <button class="addBook" @click="() => openModal()"><AddSvg /> Добавить книгу</button>
       </div>
     </div>
     <div class="body">
@@ -38,6 +35,7 @@ import { computed, ref } from 'vue'
 import { useStore } from 'vuex'
 import { IBook } from './types'
 import Notification from './components/Notification.vue'
+import AddSvg from './assets/svgs/AddSvg.vue'
 const store = useStore()
 let modalData = {
   type: 'add',

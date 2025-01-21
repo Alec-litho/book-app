@@ -1,7 +1,7 @@
 <template>
   <div :class="props.type === 'error' ? 'errorNotification' : 'successNotification'">
     <img
-      :src="`../../public/${type === 'error' ? 'notAdded.png' : type === 'success' ? 'added.png' : 'remove.png'}`"
+      :src="`../../public/${type === 'error' ? 'notAdded.png' : type === 'success' ? 'added.png' : 'delete-w.png'}`"
       class="icon"
     />
     <p>
@@ -13,7 +13,7 @@
             : 'Книга удалена. Вернуть её'
       }}
     </p>
-    <img src="../../public/close.png" alt="" class="close" @click="emit('hideNotification')" />
+    <img src="../../public/close-t.png" alt="" class="close" @click="emit('hideNotification')" />
   </div>
 </template>
 
@@ -25,6 +25,8 @@ const emit = defineEmits(['hideNotification'])
 </script>
 
 <style lang="scss">
+@import '../assets/variables.scss';
+
 .errorNotification,
 .successNotification {
   position: absolute;
@@ -47,10 +49,10 @@ const emit = defineEmits(['hideNotification'])
   }
 }
 .errorNotification {
-  background-color: rgba(144, 11, 9, 1);
+  background-color: $error-color;
 }
 .successNotification {
-  background-color: rgba(31, 139, 72, 1);
+  background-color: $success-color;
 }
 @media screen and (max-width: 480px) {
   .successNotification,

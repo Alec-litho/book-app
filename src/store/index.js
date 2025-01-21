@@ -1,11 +1,10 @@
-import { createStore, createLogger } from 'vuex'
-import { nanoid } from 'nanoid'
+import { createStore } from 'vuex'
 
 export default createStore({
   state: () => ({
     bookshelf: [
       {
-        id: nanoid(),
+        id: "1425",
         title: 'Eloquent JavaScript: A Modern Introduction to Programming',
         author: 'Marijn Haverbeke',
         year: "2011",
@@ -13,7 +12,7 @@ export default createStore({
         isComplete: false,
       },
       {
-        id: nanoid(),
+        id: "1432",
         title: 'Fullstack Vue: The Complete Guide to Vue.js and Friends',
         author: 'Ari Lerner and Nate Murray',
         year: "2018",
@@ -38,7 +37,7 @@ export default createStore({
   mutations: {
     setBook: (state, payload) => {
       state.bookshelf.push({
-        id: nanoid(),
+        id: state.bookshelf.length,
         title: payload.title,
         author: payload.author,
         year: payload.year,
@@ -56,6 +55,7 @@ export default createStore({
 
     },
     delete: (state, payload) => {
+      console.log(payload)
       state.bookshelf = state.bookshelf.filter(book => book.id != payload);
     },
     setSearch: (state, payload) => {

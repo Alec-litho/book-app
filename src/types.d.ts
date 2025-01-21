@@ -5,5 +5,5 @@ interface IBook {
   author: string
   year: string
   category: string
-  id: number
+  id: string
 }

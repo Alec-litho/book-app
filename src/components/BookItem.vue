@@ -6,9 +6,7 @@
       </div>
       <div class="btn">
         <button>
-          <img
-            src="../../public/edit.png"
-            alt=""
+          <EditSvg
             class="icon"
             @click="
               () =>
@@ -33,9 +31,10 @@
 </template>
 
 <script lang="ts" setup>
-import '../assets/main.css'
+import '../assets/main.scss'
 import { PropType } from 'vue'
 import { IBook } from '@/types'
+import EditSvg from '@/assets/svgs/EditSvg.vue'
 const props = defineProps({
   id: String,
   title: String,

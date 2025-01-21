@@ -11,7 +11,7 @@
 
 <script setup>
 import Search from './Search.vue'
-import '../assets/main.css'
+import '../assets/main.scss'
 </script>
 
 <style lang="scss">
